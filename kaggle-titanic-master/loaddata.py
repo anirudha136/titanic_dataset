@@ -440,8 +440,8 @@ def getDataSets(binary=False, bins=False, scaled=False, strings=False, raw=True,
     
     print "\nDropping", drops.shape[0], "highly correlated features...\n" #, drops
     df.drop(drops, axis=1, inplace=True)
-    
-    
+    df.to_csv('titanic_features_train',index=False)
+    exit()
     #*********************************************************************************************************
     # Split the data sets apart again, perform PCA/clustering/class balancing if necessary
     #

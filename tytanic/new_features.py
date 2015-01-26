@@ -34,13 +34,18 @@ df = pd.read_csv('titanic_train',header=0)
 X = df.values
 print X.shape
 y = df['Survived'].values
-X = np.delete(X,1,axis=1)
+#X = np.delete(X,1,axis=1)
 #clf = ensemble.GradientBoostingClassifier(n_estimators=100)
 #clf = tree.DecisionTreeClassifier(max_depth=10,random_state=None)
-clf = ensemble.RandomForestClassifier(n_estimators=1000)
-clf.fit(X,y)
+#clf = ensemble.RandomForestClassifier(n_estimators=1000)
+#clf.fit(X,y)
 #clf = evaluate_cross_validation(clf,X,y,4)
-#X_train, X_test, y_train, y_test = cross_validation.train_test_split(X,y,test_size=0.5,random_state=0)
+X_train, X_test, y_train, y_test = cross_validation.train_test_split(X,y,test_size=0.1,random_state=1)
+df = pd.DataFrame(X_train)
+df.to_csv('train_data_26_01',index=False)
+df = pd.DataFrame(X_test)
+df.to_csv('validation_data_26_01',index=False)
+exit()
 #clf.fit (X_train, y_train)
 #accuracy=clf.score (X_test, y_test)
 #print("the acuracy is....") + str(accuracy)
@@ -48,13 +53,13 @@ clf.fit(X,y)
 df = pd.read_csv('titanic_test',header=0)
 X_results = df.values
 print X_results.shape
-y_results = clf.predict(X_results)
-output = np.column_stack((X_results[:,0],y_results))
+#y_results = clf.predict(X_results)
+#output = np.column_stack((X_results[:,0],y_results))
 #print output
-df_results = pd.DataFrame(output.astype('int'),columns=['PassengerID','Survived'])
-print(df_results.shape)
+#df_results = pd.DataFrame(output.astype('int'),columns=['PassengerID','Survived'])
+#print(df_results.shape)
 #print(df_results.head())
 #df_results.to_
 
 # csv('titanic_results_%s'% str(start),index=False)
-df_results.to_csv('titanic_results',index=False)
+#df_results.to_csv('titanic_results',index=False)
